@@ -13,7 +13,9 @@ function mb_ucfirst($string)
 }
 if (empty($_POST['nom'])) {
     $_SESSION['erreur'] = "Merci de rentrer un nom d'Argonaute";
-} elseif (strlen($_POST['nom'])  < 4) {
+} elseif (preg_match('/[0-9 & @ # ² ` ¤ £ § _ \- < > : ! ; , & % ° \. \* \? \+ \[ \( \) \{ \} \^ \$ \| \] \/ ]/', $_POST['nom'])) {
+    $_SESSION['erreur'] = "Aucun Argonaute ne possède de symbole ou de chiffre dans son nom";
+} elseif (strlen($_POST['nom'])  < 3) {
     $_SESSION['erreur'] = "Aucun Argonaute ne possède un nom si court";
 } elseif (strlen($_POST['nom'])  > 48) {
     $_SESSION['erreur'] = "Aucun Argonaute ne possède un nom si long";
